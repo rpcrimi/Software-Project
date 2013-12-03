@@ -14,6 +14,12 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
+  <p><%= f.label "User type" %><br />
+  <%= f.label "Professor" %>
+  <%= f.radio_button :usertype, "Professor" %>
+  <%= f.label "Student" %>
+  <%= f.radio_button :usertype, "Student" %></p>
+
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 

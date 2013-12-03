@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, :email, :case_sensitive => false
 
-  @user_type = ["Professor", "Student"]
-
+  def self.search(search)
+  	if search
+  		find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+    else
+        find(:all)
+    end
+  end
 end

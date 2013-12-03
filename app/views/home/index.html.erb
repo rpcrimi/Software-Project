@@ -1,4 +1,16 @@
 <h3>Home</h3>
+
+<%= form_tag root_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<h3> Professors/TA's </h3>
+
 <% @users.each do |user| %>
-  <p>User: <%= user.name %> <%= user.usertype %> </p>
+  <% if(user.usertype == "Professor") %>
+  	<p><%= user.name %> <%= user.hours %>
+  <% end %></p>
 <% end %>

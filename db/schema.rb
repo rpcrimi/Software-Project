@@ -11,9 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131202194542) do
+ActiveRecord::Schema.define(:version => 20131203034023) do
 
-  create_table "users", :force => true do |t|
+  create_table "Users", :force => true do |t|
     t.string   "email"
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(:version => 20131202194542) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "type"
+    t.string   "usertype"
     t.string   "hours"
     t.string   "name"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "Users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "Users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

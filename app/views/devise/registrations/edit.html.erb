@@ -8,15 +8,23 @@
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
 
+  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+  <%= f.password_field :current_password %></div>
+
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+  <p><%= f.label :hours %><br />
+  <%= f.text_field :hours %></p>
 
+  <p><%= f.label "User type" %><br />
+  <%= f.label "Professor" %>
+  <%= f.radio_button :usertype, "Professor" %>
+  <%= f.label "Student" %>
+  <%= f.radio_button :usertype, "Student" %></p>
 
   <div><%= f.submit "Update" %></div>
 <% end %>

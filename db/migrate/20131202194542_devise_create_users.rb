@@ -34,6 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :hours
       t.string :name
+      t.string :room
 
       t.timestamps
     end

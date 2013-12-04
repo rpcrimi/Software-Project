@@ -7,10 +7,17 @@
   </p>
 <% end %>
 
-<h3> Professors/TA's </h3>
-
-<% @users.each do |user| %>
-  <% if(user.usertype == "Professor") %>
-  	<p><%= user.name %> <%= user.hours %>
-  <% end %></p>
-<% end %>
+<table>
+	<tr>
+		<th> Professor </th>
+		<th> Hours </th>
+		<th> Exceptions </th>
+	</tr>
+	
+	<% @users.each do |user| %>
+  		<% if(user.usertype == "Professor") %>
+  			<td> <%= user.name %> </td>
+  			<td> <%= user.hours %> </td>
+  			<td> <%= user.exceptions %> </td>
+  		<% end %></p>
+	<% end %>

@@ -40,7 +40,7 @@ end
 
 def sign_in
   visit '/users/sign_in'
-  fill_in "user_email", :with => @visitor[:email]
+  fill_in 'user_email', :with => @visitor[:email]
   fill_in "user_password", :with => @visitor[:password]
   click_button "Sign in"
 end
@@ -204,4 +204,25 @@ end
 
 Then /^the following should appear: (.*)$/ do |name|
   assert page.body =~ /#{name}/
+end
+
+Then /^I should see Hello, (.*)$/ do |name|
+  create_user
+  assert page.body =~ /Hello, #{name}/
+end
+
+And /^I am a professor$/ do 
+  @visitor = @visitor.merge(:usertype => "Professor")
+  assert @visitor[:usertype] == "Professor"
+  puts @visitor[:usertype]
+end
+
+When /^I visit the edit page$/ do
+  visit '/users/edit'
+end
+
+When /^I fill in the Exceptions box with: (.*)$/ do |message|
+  #puts page.body
+  fill_in "user_exceptions", :with => message
+  click_button "Update"
 end

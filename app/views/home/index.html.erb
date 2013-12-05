@@ -1,24 +1,56 @@
 <h3>Home</h3>
 
+<!--Search bar for professors-->
 <%= form_tag root_path, :method => 'get' do %>
   <p>
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>
-
+<!--Results of search (only show professors when searched for)-->
 <table>
 	<tr>
 		<th> Professor </th>
 		<th> Hours </th>
 		<th> Exceptions </th>
+		<th> More </th>
 	</tr>
-	
-	<% @users.each do |user| %>
-  		<% if(user.usertype == "Professor") %>
-  			<td> <%= user.name %> </td>
-  			<td> <%= user.hours %> </td>
-  			<td> <%= user.exceptions %> </td>
-  		<% end %></p>
+	<% if(params[:search]) %>
+		<% @users.each do |user| %>
+			<tr>
+  			<% if(user.usertype == "Professor") %>
+  				<td> <%= user.name %> </td>
+  				<td> <%= user.hours %> </td>
+  				<td> <%= user.exceptions %> </td>
+
+  				<% if(current_user && current_user.usertype == "Student") %>
+  					<td> <%= link_to "Add #{user.name} to My Schedule", root_path %> </td>
+  				<% end %>
+  			<% end %></p>
+  			</tr>
+		<% end %>
 	<% end %>
 </table>
+
+<!--Show My Professors only if current user is a student-->
+<% if(current_user && current_user.usertype == "Student") %>
+<h3> My Professors </h3>
+	<table>
+		<tr>
+			<th> Professor </th>
+			<th> Hours </th>
+			<th> Exceptions </th>
+		</tr>
+
+		<!--find current users professors-->
+		<% current_user.myProfessors.each do |user| %>
+			<tr>
+				<% prof = User.find(:first, :conditions => ['name LIKE ?', user]) %>
+  				<td> <%= prof.name %> </td>
+  				<td> <%= prof.hours %> </td>
+  				<td> <%= prof.exceptions %> </td>
+  			</p>
+  			</tr>
+		<% end %>
+	</table>
+<% end %>

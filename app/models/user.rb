@@ -4,10 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessor :usertype
-
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :hours, :exceptions, :usertype, :room, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :hours, :exceptions, :professors, :usertype, :room, :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
   validates_presence_of :name
@@ -17,7 +15,13 @@ class User < ActiveRecord::Base
   	if search
   		find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
     else
-        find(:all)
+      find(:all)
+    end
+  end
+
+  def myProfessors()
+    if(self.usertype == "Student")
+      @myProfs = professors.split(',')
     end
   end
 end

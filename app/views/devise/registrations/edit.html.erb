@@ -24,6 +24,10 @@
     <%= f.text_field :exceptions %></p>
   <% end %>
 
+  <% if(current_user.usertype == "Student") %>
+    <p><%= f.label "My Professors" %><br />
+    <%= f.text_field :professors %></p>
+  <% end %>
 
   <div><%= f.submit "Update" %></div>
 <% end %>

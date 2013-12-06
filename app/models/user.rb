@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
       @myProfs = professors.split(',')
     end
   end
+
+  def addProfToSchedule(name)
+    professors << ("," << name)
+  end
 end

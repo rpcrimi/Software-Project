@@ -22,9 +22,9 @@
   				<td> <%= user.name %> </td>
   				<td> <%= user.hours %> </td>
   				<td> <%= user.exceptions %> </td>
-
+  				<!--current_user.addProfToSchedule(user.name)-->
   				<% if(current_user && current_user.usertype == "Student") %>
-  					<td> <%= link_to "Add #{user.name} to My Schedule", root_path %> </td>
+  					<td> <%= link_to "Add #{user.name} to My Schedule", root_path(:method => :add, :prof => user.name) %> </td>
   				<% end %>
   			<% end %></p>
   			</tr>
@@ -46,9 +46,11 @@
 		<% current_user.myProfessors.each do |user| %>
 			<tr>
 				<% prof = User.find(:first, :conditions => ['name LIKE ?', user]) %>
-  				<td> <%= prof.name %> </td>
-  				<td> <%= prof.hours %> </td>
-  				<td> <%= prof.exceptions %> </td>
+				<% if(prof) %>
+  					<td> <%= prof.name %> </td>
+  					<td> <%= prof.hours %> </td>
+  					<td> <%= prof.exceptions %> </td>
+  				<% end %>
   			</p>
   			</tr>
 		<% end %>

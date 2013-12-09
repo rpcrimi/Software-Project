@@ -22,6 +22,10 @@
     <%= f.text_field :hours %></p>
     <p><%= f.label :exceptions %><br />
     <%= f.text_field :exceptions %></p>
+    <p><%= f.label :website %><br />
+    <%= f.text_field :website %></p>
+    <p><%= f.label :room %><br />
+    <%= f.text_field :room %></p>
   <% end %>
 
   <% if(current_user.usertype == "Student") %>

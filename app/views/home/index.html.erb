@@ -13,15 +13,17 @@
 		<th> Professor </th>
 		<th> Hours </th>
 		<th> Exceptions </th>
+		<th> Email </th>
 		<th> More </th>
 	</tr>
 	<% if(params[:search]) %>
 		<% @users.each do |user| %>
 			<tr>
   			<% if(user.usertype == "Professor") %>
-  				<td> <%= user.name %> </td>
+  				<td> <%= link_to user.name, user %> </td>
   				<td> <%= user.hours %> </td>
   				<td> <%= user.exceptions %> </td>
+  				<td> <%= user.email %> </td>
   				<!--current_user.addProfToSchedule(user.name)-->
   				<% if(current_user && current_user.usertype == "Student") %>
   					<td> <%= link_to "Add #{user.name} to My Schedule", root_path(:method => :add, :prof => user.name) %> </td>
@@ -40,6 +42,7 @@
 			<th> Professor </th>
 			<th> Hours </th>
 			<th> Exceptions </th>
+			<th> Email </th>
 		</tr>
 
 		<!--find current users professors-->
@@ -50,6 +53,7 @@
   					<td> <%= prof.name %> </td>
   					<td> <%= prof.hours %> </td>
   					<td> <%= prof.exceptions %> </td>
+  					<td> <%= prof.email %> </td> 
   				<% end %>
   			</p>
   			</tr>

@@ -7,7 +7,30 @@
     <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>
+
 <!--Results of search (only show professors when searched for)-->
+<% if not(current_user)%>
+<table>
+	<tr>
+		<th> Professor </th>
+		<th> Hours </th>
+		<th> Exceptions </th>
+		<th> Email </th>
+	</tr>
+
+		<% @users.each do |user| %>
+			<tr>
+  			<% if(user.usertype == "Professor") %>
+  				<td> <%= link_to user.name, user %> </td>
+  				<td> <%= user.hours %> </td>
+  				<td> <%= user.exceptions %> </td>
+  				<td> <%= user.email %> </td>
+  			<% end %></p>
+  			</tr>
+		<% end %>
+</table>
+
+<% elsif (params[:search]) %>
 <table>
 	<tr>
 		<th> Professor </th>
@@ -16,23 +39,23 @@
 		<th> Email </th>
 		<th> More </th>
 	</tr>
-	<% if(params[:search]) %>
-		<% @users.each do |user| %>
-			<tr>
-  			<% if(user.usertype == "Professor") %>
-  				<td> <%= link_to user.name, user %> </td>
-  				<td> <%= user.hours %> </td>
-  				<td> <%= user.exceptions %> </td>
-  				<td> <%= user.email %> </td>
-  				<!--current_user.addProfToSchedule(user.name)-->
+
+	<% @users.each do |user| %>
+		<tr>
+  		<% if(user.usertype == "Professor") %>
+  			<td> <%= link_to user.name, user %> </td>
+  			<td> <%= user.hours %> </td>
+  			<td> <%= user.exceptions %> </td>
+  			<td> <%= user.email %> </td>
   				<% if(current_user && current_user.usertype == "Student") %>
   					<td> <%= link_to "Add #{user.name} to My Schedule", root_path(:method => :add, :prof => user.name) %> </td>
   				<% end %>
-  			<% end %></p>
-  			</tr>
-		<% end %>
+  		<% end %></p>
+  		</tr>
 	<% end %>
 </table>
+<% end %>
+
 
 <!--Show My Professors only if current user is a student-->
 <% if(current_user && current_user.usertype == "Student") %>

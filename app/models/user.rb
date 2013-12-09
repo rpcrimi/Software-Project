@@ -21,7 +21,9 @@ class User < ActiveRecord::Base
 
   def myProfessors()
     if(self.usertype == "Student")
-      @myProfs = professors.split(',')
+      if(professors)
+        @myProfs = professors.split(',')
+      end
     end
   end
 

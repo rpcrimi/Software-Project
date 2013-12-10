@@ -20,14 +20,17 @@ class User < ActiveRecord::Base
   end
 
   def myProfessors()
-    if(self.usertype == "Student")
-      if(professors)
-        @myProfs = professors.split(',')
-      end
+    if(professors)
+      @myProfs = professors.split(',')
     end
   end
 
   def addProfToSchedule(name)
-    professors << ("," << name)
+    self.update_attribute(:professors, professors + name + ",")
   end
+
+  def removeProfFromSchedule(name)
+    self.update_attribute(:professors, professors.sub(name + ",", ""))
+  end
+
 end

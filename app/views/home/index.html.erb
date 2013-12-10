@@ -48,7 +48,7 @@
   			<td> <%= user.exceptions %> </td>
   			<td> <%= user.email %> </td>
   				<% if(current_user && current_user.usertype == "Student") %>
-  					<td> <%= link_to "Add #{user.name} to My Schedule", root_path(:method => :add, :prof => user.name) %> </td>
+  					<td> <%= link_to "Add #{user.name} to My Schedule", root_path(:addprof => user.name) %> </td>
   				<% end %>
   		<% end %></p>
   		</tr>
@@ -66,6 +66,7 @@
 			<th> Hours </th>
 			<th> Exceptions </th>
 			<th> Email </th>
+			<th> More </th>
 		</tr>
 
 		<!--find current users professors-->
@@ -73,10 +74,11 @@
 			<tr>
 				<% prof = User.find(:first, :conditions => ['name LIKE ?', user]) %>
 				<% if(prof) %>
-  					<td> <%= prof.name %> </td>
+  					<td> <%= link_to prof.name, prof %> </td>
   					<td> <%= prof.hours %> </td>
   					<td> <%= prof.exceptions %> </td>
   					<td> <%= prof.email %> </td> 
+  					<td> <%= link_to "Remove #{prof.name}", root_path(:removeprof => prof.name) %> </td>
   				<% end %>
   			</p>
   			</tr>

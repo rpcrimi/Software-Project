@@ -70,18 +70,20 @@
 		</tr>
 
 		<!--find current users professors-->
-		<% current_user.myProfessors.each do |user| %>
-			<tr>
-				<% prof = User.find(:first, :conditions => ['name LIKE ?', user]) %>
-				<% if(prof) %>
-  					<td> <%= link_to prof.name, prof %> </td>
-  					<td> <%= prof.hours %> </td>
-  					<td> <%= prof.exceptions %> </td>
-  					<td> <%= prof.email %> </td> 
-  					<td> <%= link_to "Remove #{prof.name}", root_path(:removeprof => prof.name) %> </td>
-  				<% end %>
-  			</p>
-  			</tr>
+		<% if(current_user.myProfessors()) %>
+			<% current_user.myProfessors.each do |user| %>
+				<tr>
+					<% prof = User.find(:first, :conditions => ['name LIKE ?', user]) %>
+					<% if(prof) %>
+  						<td> <%= link_to prof.name, prof %> </td>
+  						<td> <%= prof.hours %> </td>
+  						<td> <%= prof.exceptions %> </td>
+  						<td> <%= prof.email %> </td> 
+  						<td> <%= link_to "Remove #{prof.name}", root_path(:removeprof => prof.name) %> </td>
+  					<% end %>
+  				</p>
+  				</tr>
+			<% end %>
 		<% end %>
 	</table>
 <% end %>

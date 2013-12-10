@@ -11,11 +11,17 @@
  *= require_self
  *= require_tree .
  */
+html, body {
+  background: #CFC;
+  color: Black;
+}
+
 .brand {
   float: left;
   padding-right: 8px;
 }
 ul.nav {
+  /*background-color: #CFC;*/
   list-style: none;
   margin: 0 0 2em;
   padding: 0;
@@ -23,6 +29,26 @@ ul.nav {
 ul.nav li {
   display: inline;
 }
+
+h3 {
+  margin-right: 1000px;
+  background-color: #5C5;
+  font-weight: Bold;
+}
+
+table {
+  border: 2px solid grey;
+  padding: 10px;
+  text-align: left;
+  background-color: #6C6;
+}
+
+.colright {
+  float: right;
+  border-left: 2px solid grey;
+  position: relative;
+}
+
 #flash_notice, #flash_alert {
   padding: 5px 8px;
   margin: 10px 0;

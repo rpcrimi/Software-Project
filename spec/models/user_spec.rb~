@@ -1,0 +1,8 @@
+require 'spec_helper'
+
+describe User do
+  it 'is named Lisa' do
+    user = User.new
+    user.name.should == 'Lisa'
+  end
+end

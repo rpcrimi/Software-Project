@@ -35,7 +35,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :hours
       t.string :name
       t.string :room
-      t.string :exceptions
 
       t.timestamps
     end

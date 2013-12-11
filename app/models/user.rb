@@ -27,7 +27,9 @@ class User < ActiveRecord::Base
 
   def addProfToSchedule(name)
     if(professors)
-      self.update_attribute(:professors, professors + name + ",")
+	if(!professors.include?(name))
+      	  self.update_attribute(:professors, professors + name + ",")
+	end
     else
       self.update_attribute(:professors, name + ",")
     end

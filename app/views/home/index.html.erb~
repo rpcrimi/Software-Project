@@ -10,7 +10,7 @@
 
 <!--Results of search (only show professors when searched for)-->
 <% if not(current_user)%>
-<table border = 1>
+<table>
 	<tr>
 		<th> Professor </th>
 		<th> Hours </th>
@@ -31,7 +31,7 @@
 </table>
 
 <% elsif (params[:search]) %>
-<table border = 1>
+<table>
 	<tr>
 		<th> Professor </th>
 		<th> Hours </th>
@@ -60,7 +60,7 @@
 <!--Show My Professors only if current user is a student-->
 <% if(current_user && current_user.usertype == "Student") %>
 <h3> My Professors </h3>
-	<table border = 1>
+	<table>
 		<tr>
 			<th> Professor </th>
 			<th> Hours </th>
